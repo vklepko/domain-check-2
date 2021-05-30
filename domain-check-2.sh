@@ -718,9 +718,10 @@ check_domain_status()
         "${TLDTYPE}" == "stream" -o "${TLDTYPE}" == "today" -o "${TLDTYPE}" == "website" -o "${TLDTYPE}" == "host" -o \
         "${TLDTYPE}" == "team" -o "${TLDTYPE}" == "info" -o "${TLDTYPE}" == "xxx" -o "${TLDTYPE}" == "md" -o \
         "${TLDTYPE}" == "se" -o "${TLDTYPE}" == "nu" -o "${TLDTYPE}" == "dk" -o "${TLDTYPE}" == "it" -o \
-        "${TLDTYPE}" == "do" -o "${TLDTYPE}" == "ro" -o "${TLDTYPE}" == "game" ];
+        "${TLDTYPE}" == "do" -o "${TLDTYPE}" == "ro" -o "${TLDTYPE}" == "game" -o "${TLDTYPE}" == "media" -o \
+	"${TLDTYPE}" == "click" -o "${TLDTYPE}" == "business" ];
     then
-        tdomdate=`${AWK} '/Registrar\ Registration\ Expiration\ [Dd]ate:|Registry\ Expiry\ Date:|Expiration\ [Dd]ate:|Renewal\ date:|Expir[ey]\ [Dd]ate:|Expires\ On:|[Ee]xpires:/ \
+        tdomdate=`${AWK} '/Registrar Registration Expiration [Dd]ate:|Registry Expiry Date:|Expiration [Dd]ate:|Renewal date:|Expir[ey] [Dd]ate:|Expires On:|[Ee]xpires:/ \
            { print $NF; }' ${WHOIS_TMP} | ${AWK} -FT '{ print $1}' | ${HEAD} -1`
         tyear=`echo ${tdomdate} | ${CUT} -d'-' -f1`
         tmon=`echo ${tdomdate} |${CUT} -d'-' -f2`
